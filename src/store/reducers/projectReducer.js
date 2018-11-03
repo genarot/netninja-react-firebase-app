@@ -1,4 +1,4 @@
-import { GET_PROJECTS, CREATE_PROJECT } from "../actions/types";
+import { GET_PROJECTS, CREATE_PROJECT, CREATE_PROJECT_ERROR } from "../actions/types";
 
 const initState = {
     projects: [
@@ -19,6 +19,12 @@ const projectReducer = (state =initState, action) => {
             return{
                 ...state,
                 projects: [...state.projects, action.payload]
+            }
+        case CREATE_PROJECT_ERROR:
+        const {code, name, message} = action.err;
+            return {
+                ...state,
+                error: {code, name, message}
             }
         default:
             return state;

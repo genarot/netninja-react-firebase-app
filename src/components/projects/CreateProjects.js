@@ -6,7 +6,6 @@ import { createProject } from '../../store/actions/projectActions';
 
 class CreateProjects extends Component {
     state = {
-        id: 3,
         title:'',
         content:''
     }
@@ -40,9 +39,14 @@ class CreateProjects extends Component {
                     <button className="btn pink lighten-1 z-depth-0">Create</button>
                 </div>
             </form>
+            {this.props.error ? <div className="card-panel white-text red darken-3">{this.props.error.message}</div>: null }
         </div>
         )
     }
 }
 
-export default connect(null, {createProject})(CreateProjects);
+const mapStateToProps = (state )=>({
+    error: state.project.error
+})
+
+export default connect(mapStateToProps, {createProject})(CreateProjects);
