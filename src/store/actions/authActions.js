@@ -36,7 +36,7 @@ export const signUp = (newUser) => async (dispatch, getState, {getFirebase, getF
     )
     .then((resp) => {
         return  firestore.collection('users').doc(resp.user.uid).set({
-            firtsName: newUser.firstName,
+            firstName: newUser.firstName,
             lastName:   newUser.lastName,
             initials:   newUser.firstName[0] + newUser.lastName[0]
         })
