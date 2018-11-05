@@ -1,4 +1,4 @@
-import { LOGIN_ERROR, LOGIN_SUCCESS, SIGNUP_SUCCESS, SIGNUP_ERROR } from "../actions/types";
+import { LOGIN_ERROR, LOGIN_SUCCESS, SIGNUP_SUCCESS, SIGNUP_ERROR, CLEAR_AUTH_ERROR } from "../actions/types";
 
 const initState = {};
 
@@ -8,7 +8,12 @@ const authReducer = (state = initState, action) => {
             console.log('login error', action.err);
             return {
                 ...state,
-                authError: 'Login failed'
+                authError: action.err.message
+            }
+        case CLEAR_AUTH_ERROR:
+            return {
+                ...state,
+                authError: null
             }
         case LOGIN_SUCCESS:
             console.log('Login success');

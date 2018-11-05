@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 
 //Redux
 import {connect} from 'react-redux'
-import {signIn} from '../../store/actions/authActions'
+import {signIn, clearAuthErrror} from '../../store/actions/authActions'
 import { HOME } from '../../constants/routes';
 
 class SignIn extends Component {
@@ -22,6 +22,10 @@ class SignIn extends Component {
         console.log('handleSubmit');
         e.preventDefault();
         this.props.signIn(this.state)
+    }
+
+    componentWillUnmount() {
+        this.props.clearAuthErrror();
     }
     render() {
         const {authError, auth} = this.props;
@@ -42,6 +46,9 @@ class SignIn extends Component {
                 <div className="input-field">
                     <button className="btn pink lighten-1 z-depth-0">Login</button>
                 </div>
+                <div className="card red darken-3 center py-10">
+                     {authError ? <p className="white-text">{authError}</p> : null }
+                </div>
             </form>
         </div>
         )
@@ -55,4 +62,4 @@ const  mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {signIn})(SignIn);
+export default connect(mapStateToProps, {signIn, clearAuthErrror})(SignIn);

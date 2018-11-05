@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_ERROR, SIGNOUT_SUCCESS, SIGNUP_SUCCESS, SIGNUP_ERROR } from "./types";
+import { LOGIN_SUCCESS, LOGIN_ERROR, SIGNOUT_SUCCESS, SIGNUP_SUCCESS, SIGNUP_ERROR, CLEAR_AUTH_ERROR } from "./types";
 
 export const signIn = ( credentials ) =>  async (dispatch, getState,{getFirebase}) =>{
     const firebase = getFirebase();
@@ -26,6 +26,11 @@ export const signOut = ( ) => (dispatch, getState, {getFirebase}) =>{
     })
 }
 
+export const clearAuthErrror = () => (dispatch) => {
+    dispatch({
+        type: CLEAR_AUTH_ERROR
+    })
+}
 export const signUp = (newUser) => async (dispatch, getState, {getFirebase, getFirestore }) => {
     const firebase = getFirebase();
     const firestore= getFirestore();

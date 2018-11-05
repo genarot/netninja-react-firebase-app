@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 
 //Redux
 import {connect} from 'react-redux';
 import { createProject } from '../../store/actions/projectActions';
-import { SIGN_IN } from '../../constants/routes';
+import { SIGN_IN, HOME } from '../../constants/routes';
 
 class CreateProjects extends Component {
     state = {
@@ -44,17 +44,17 @@ class CreateProjects extends Component {
                         <button className="btn pink lighten-1 z-depth-0">Create</button>
                     </div>
                 </form>
-                {project ? <div className="card-panel white-text light-blue">Proyecto Creado con exito</div> : null} 
-                {error ? <div className="card-panel white-text red darken-3">{this.props.error.message}</div>: null }
+                { project ? <div className="card-panel white-text light-blue">Proyecto Creado con exito <Link to={HOME} className="waves-effect waves-light btn grey darken-1">Ir a Inicio</Link></div> : null} 
+                { error ? <div className="card-panel white-text red darken-3">{this.props.error.message}</div>: null }
             </div>
         )
     }
 }
 
-const mapStateToProps = (state )=>({
-    error: state.project.error,
-    project: state.project.project,
-    auth: state.firebase.auth
+const mapStateToProps = ( state )=>({
+    error:      state.project.error,
+    project:    state.project.project,
+    auth:       state.firebase.auth
 })
 
 export default connect(mapStateToProps, {createProject})(CreateProjects);

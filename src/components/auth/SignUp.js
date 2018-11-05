@@ -4,7 +4,7 @@ import {Redirect} from 'react-router-dom'
 //Redux
 import {connect} from 'react-redux'
 import { HOME } from '../../constants/routes';
-import {signUp as signUpAction} from '../../store/actions/authActions'
+import {signUp as signUpAction,clearAuthErrror} from '../../store/actions/authActions'
 
 class SignUp extends Component {
     state   = {
@@ -25,6 +25,10 @@ class SignUp extends Component {
         
         this.props.signUpAction(this.state)
         e.preventDefault();
+    }
+
+    componentWillUnmount() {
+        this.props.clearAuthErrror();
     }
     render() {
         const {auth, authError} = this.props;
@@ -68,4 +72,4 @@ const mapStateToProps = ( state ) => {
     }
 }
 
-export default connect(mapStateToProps,{signUpAction})(SignUp);
+export default connect(mapStateToProps,{signUpAction,clearAuthErrror})(SignUp);
