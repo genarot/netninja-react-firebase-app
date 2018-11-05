@@ -2,17 +2,34 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
+import { HOME } from '../../constants/routes';
 
-const Navbar = () => {
+//Redux
+import {connect} from 'react-redux'
+
+const Navbar = (props) => {
+    const {auth, profile}  = props;
+
+    const isAuth = (auth.uid);
     return (
-       <nav className="nav-wrapper grey darken-3">
+        <nav className="nav-wrapper grey darken-3">
             <div className="container">
-                <Link to='/' className="brand-logo">MarioPlan</Link>
+                <Link to={HOME} className="brand-logo">MarioPlan</Link>
             </div>
-            <SignedInLinks />
-            <SignedOutLinks />
+            {isAuth ? 
+            <SignedInLinks profile={profile}/> :
+            <SignedOutLinks />}
        </nav>
     );
 };
 
-export default Navbar;
+function mapStateToProps( state ) {
+    
+    console.log('navbar',state);
+    return {
+        auth: state.firebase.auth,
+        profile: state.firebase.profile
+    } 
+}
+
+export default connect(mapStateToProps, null) (Navbar);

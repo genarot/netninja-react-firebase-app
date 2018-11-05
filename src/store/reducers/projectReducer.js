@@ -1,11 +1,7 @@
 import { GET_PROJECTS, CREATE_PROJECT, CREATE_PROJECT_ERROR } from "../actions/types";
 
 const initState = {
-    projects: [
-        {id: 1, title:'Proyecto Title 1', content: 'perroasda a sda dsd a'},
-        {id: 2, title:'Proyecto 2', content: 'perroasda a sda dsd a'},
-        {id: 3, title:'Proyecto 3', content: 'perroasda a sda dsd a'}
-    ]
+    projects: []
 };
 
 const projectReducer = (state =initState, action) => {
@@ -18,6 +14,7 @@ const projectReducer = (state =initState, action) => {
         case CREATE_PROJECT:
             return{
                 ...state,
+                project: action.payload,
                 projects: [...state.projects, action.payload]
             }
         case CREATE_PROJECT_ERROR:
@@ -29,7 +26,6 @@ const projectReducer = (state =initState, action) => {
         default:
             return state;
     }
-    return state;
 }
 
 export default projectReducer;

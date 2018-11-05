@@ -4,12 +4,12 @@ import 'firebase/auth'
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyCiSl933Ewz8KO-GkuZktJ6Ak-tqDXRBrM",
-    authDomain: "netninja-marioapp.firebaseapp.com",
-    databaseURL: "https://netninja-marioapp.firebaseio.com",
-    projectId: "netninja-marioapp",
-    storageBucket: "",
-    messagingSenderId: "993018816431"
+    apiKey: "AIzaSyCLnmXJ38LCFlXisbouCI_aomsppStC7gw",
+    authDomain: "netninja-reactjs-marioplan.firebaseapp.com",
+    databaseURL: "https://netninja-reactjs-marioplan.firebaseio.com",
+    projectId: "netninja-reactjs-marioplan",
+    storageBucket: "netninja-reactjs-marioplan.appspot.com",
+    messagingSenderId: "801748613933"
   };
 
 

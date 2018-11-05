@@ -18,12 +18,10 @@ const middleWare = [thunk.withExtraArgument({getFirebase, getFirestore})];
 const initialState = {};
 
 
-
-
 const store = createStore(rootReducer, initialState, 
         compose(
                 applyMiddleware(...middleWare),
-                reactReduxFirebase(fbConfig),
+                reactReduxFirebase(fbConfig,{useFirestoreForProfile: true, userProfile: 'users',attachAuthIsReady : true}),
                 reduxFirestore(fbConfig),
                 window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
         )
