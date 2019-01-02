@@ -16,14 +16,13 @@ import fbConfig         from '../config/fbConfig'
 const middleWare = [thunk.withExtraArgument({getFirebase, getFirestore})];
 
 const initialState = {};
-
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 
 const store = createStore(rootReducer, initialState, 
-        compose(
+        composeEnhancers(
                 applyMiddleware(...middleWare),
                 reactReduxFirebase(fbConfig,{useFirestoreForProfile: true, userProfile: 'users',attachAuthIsReady : true}),
-                reduxFirestore(fbConfig),
-                window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+                reduxFirestore(fbConfig)
         )
 )
 
