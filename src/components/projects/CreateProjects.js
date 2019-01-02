@@ -3,7 +3,7 @@ import {Redirect, Link} from 'react-router-dom'
 
 //Redux
 import {connect} from 'react-redux';
-import { createProject } from '../../store/actions/projectActions';
+import { createProject, clearCurrentProject } from '../../store/actions/projectActions';
 import { SIGN_IN, HOME } from '../../constants/routes';
 
 class CreateProjects extends Component {
@@ -49,6 +49,10 @@ class CreateProjects extends Component {
             </div>
         )
     }
+
+    componentWillUnmount() {
+        this.props.clearCurrentProject()
+    }
 }
 
 const mapStateToProps = ( state )=>({
@@ -57,4 +61,5 @@ const mapStateToProps = ( state )=>({
     auth:       state.firebase.auth
 })
 
-export default connect(mapStateToProps, {createProject})(CreateProjects);
+
+export default connect(mapStateToProps, {createProject, clearCurrentProject})(CreateProjects);

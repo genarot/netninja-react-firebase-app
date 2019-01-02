@@ -1,38 +1,25 @@
 import { LOGIN_ERROR, LOGIN_SUCCESS, SIGNUP_SUCCESS, SIGNUP_ERROR, CLEAR_AUTH_ERROR } from "../actions/types";
 
 const initState = {};
-
+const loginError = ( state, action) => ({
+    ...state,
+    authError: 'Login failed'
+})
+const loginSuccess = ( state, action ) => ({
+    ...state, 
+    authError: null
+})
+const signUpError = ( state, action ) => ({
+    ...state,
+    authError: action.err.message
+})
 const authReducer = (state = initState, action) => {
     switch( action.type ) {
-        case LOGIN_ERROR:
-            console.log('login error', action.err);
-            return {
-                ...state,
-                authError: action.err.message
-            }
-        case CLEAR_AUTH_ERROR:
-            return {
-                ...state,
-                authError: null
-            }
-        case LOGIN_SUCCESS:
-            console.log('Login success');
-            return {
-                ...state, 
-                authError: null
-            }
-        case SIGNUP_SUCCESS:
-            return{
-                ...state,
-                authError: null
-            }
-        case SIGNUP_ERROR:
-            return{
-                ...state,
-                authError: action.err.message
-            }
-        default:
-            return state;
+        case LOGIN_ERROR:   return loginError( state, action );
+        case LOGIN_SUCCESS: return loginSuccess( state, action );
+        case SIGNUP_SUCCESS: return loginSuccess( state, action );
+        case SIGNUP_ERROR:   return signUpError( state, action );
+        default:    return state;
     }
 }
 

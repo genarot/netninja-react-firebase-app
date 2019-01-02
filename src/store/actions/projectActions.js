@@ -1,4 +1,4 @@
-import {GET_PROJECTS, CREATE_PROJECT, CREATE_PROJECT_ERROR} from './types'
+import {GET_PROJECTS, CREATE_PROJECT, CREATE_PROJECT_ERROR, CLEAR_CURRENT_PROJECT} from './types'
 
 export const getAllProjects = ( ) => async dispatch => {
     
@@ -41,4 +41,8 @@ export const updateProject = (project) => async (dispatch) => {
     dispatch({
         
     })
+}
+
+export const clearCurrentProject = () => (dispatch) => {
+    dispatch({type: CLEAR_CURRENT_PROJECT})
 }
